@@ -1,45 +1,38 @@
-import static org.junit.Assert.*;
+package es.iessoterohernandez.daw.endes.Ejercicio2_junit5;
 
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.*;
 
-import ejerciciosUnitarias.Videojuego;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
-public class VideoJuegoTest {
+
+import es.iessoterohernandez.daw.endes.Ejercicio2_junit5.*;
+
+class VideojuegoTest {
 	
-	 Videojuego v1;
-	 Videojuego v2;
-	 Videojuego v3;
-	 Videojuego v4;
+	 static Videojuego v1;
+	 static Videojuego v2;
+	 static Videojuego v3;
+	 static Videojuego v4;
 
-	@BeforeClass
-	public static void setUpBeforeClass() throws Exception {
-	}
-
-	@AfterClass
-	public static void tearDownAfterClass() throws Exception {
-	}
-
-	@Before
-	public void setUp() throws Exception {
+	@BeforeAll
+	static void setUpBeforeClass() throws Exception {
 		
-		v1 = new Videojuego("Returnal", 60, "Acción", "Housemarque");
+		v1 = new Videojuego("Returnal", 60, "AcciÃ³n", "Housemarque");
         v2 = new Videojuego("Total War", 60, "Estrategia", "The Creative Assembly");
         v3 = new Videojuego("League of legends", 1000, "Moba", "Riot");
         v4 = new Videojuego("Total War", 60, "Estrategia", "The Creative Assembly");
 	}
 
-	@After
-	public void tearDown() throws Exception {
-	}
-
-	@Test
-	public void testSetTitulo() {
-		v1.setTitulo("Returnal");
-        assertEquals("Returnal", v1.getTitulo());
+	@AfterAll
+	static void tearDownAfterClass() throws Exception {
+		v1=null;
+		v2=null;
+		v3=null;
+		v4=null;
 	}
 
 	@Test
@@ -50,11 +43,11 @@ public class VideoJuegoTest {
 
 	@Test
 	public void testSetGenero() {
-		v1.setGenero("Acción");
-        assertEquals("Acción", v1.getGenero());
+		v1.setGenero("AcciÃ³n");
+        assertEquals("AcciÃ³n", v1.getGenero());
 	}
 
-	@Test //getcompanya es un método privado
+	@Test //getcompanya es un mÃ©todo privado
 	public void testSetcompanyia() {
 		v1.setcompanyia("Housemarque");
         assertEquals("Housemarque", v1.getcompanya());
@@ -92,7 +85,7 @@ public class VideoJuegoTest {
                 + "\tTitulo: " + v2.getTitulo() + "\n"
                 + "\tHoras estimadas: " + v2.getHorasEstimadas() + "\n"
                 + "\tGenero: " + v2.getGenero() + "\n"
-                + "\tcompañia: " + v2.getcompanya(), v2.toString());
+                + "\tcompaÃ±ia: " + v2.getcompanya(), v2.toString());
 	}
 
 	@Test
