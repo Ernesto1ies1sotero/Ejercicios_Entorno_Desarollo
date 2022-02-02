@@ -2,6 +2,7 @@ package es.iessoterohernandez.daw.endes.Ejercicio2_junit5;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import org.hamcrest.CoreMatchers;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
@@ -10,7 +11,7 @@ import org.junit.jupiter.api.Test;
 
 import es.iessoterohernandez.daw.endes.Ejercicio2_junit5.Serie;
 
-class SerieTest {
+class SerieTest extends CoreMatchers{
 	
 	static Serie s1;
     static Serie s2;
