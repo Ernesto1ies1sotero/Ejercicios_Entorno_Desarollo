@@ -12,81 +12,70 @@ import org.junit.jupiter.api.Test;
 class DebitoTest {
 
 	Cuenta cu;
-	Credito tarjeta;
+	Debito tarjetaD;
 	Movimiento m;
 
 	@BeforeEach
 	void setUp() throws Exception {
 		cu = new Cuenta("0000.2471.42.1234512345", "Jacinto");
-		cu.ingresar(1000.0);
+		cu.ingresar(10000.0);
 
 		String caducidad = "03/01/2023";
 		DateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
 		Date duracion = formato.parse(caducidad);
 		Date fechaCaducidad = new Date(duracion.getTime());
 
-		tarjeta = new Credito("0000000000000000", "Jacinto", fechaCaducidad, 1000.0);
-		tarjeta.setCuenta(cu);
+		tarjetaD = new Debito("0000000000000000", "Jacinto", fechaCaducidad);
+		tarjetaD.setCuenta(cu);
 	}
 
 	@Test
 	void testRetirar() {
 		try {
-			tarjeta.retirar(100);
+			tarjetaD.retirar(100);
 
 		} catch (Exception e) {
 			fail("No debería fallar");
 		}
-		assertEquals(5, tarjeta.getSaldo());
+		assertEquals(9900, tarjetaD.getSaldo());
 	}
 
 	@Test
 	void testIngresar() {
 		try {
-			tarjeta.ingresar(200);
-			assertEquals(200, tarjeta.getSaldo());
+			tarjetaD.ingresar(200);
+			assertEquals(9800, tarjetaD.getSaldo());
 			
 
 		} catch (Exception e) {
 			fail("No deberia fallar");
 		}
-		assertEquals(200, tarjeta.getSaldo());
+		
 	}
 
 	@Test
 	void testPagoEnEstablecimiento() {
 		try {
-			tarjeta.pagoEnEstablecimiento("Game", 450);
+			tarjetaD.pagoEnEstablecimiento("Game", 450);
 
 		} catch (Exception e) {
 			fail("No deberia fallar");
 		}
-		assertEquals(450, tarjeta.getSaldo());
+		assertEquals(9550, tarjetaD.getSaldo());
 	}
 
 	@Test
 	void testGetSaldo() {
 		try {
 			Movimiento m = new Movimiento();
-			tarjeta.ingresar(50);
+			tarjetaD.ingresar(50);
 			m.getImporte();
 		} catch (Exception e) {
 		}
-		assertNotEquals(60.0, tarjeta.getSaldo());
-		assertEquals(50.0,tarjeta.getSaldo());
+		assertNotEquals(60.0, tarjetaD.getSaldo());
+		assertEquals(9950.0,tarjetaD.getSaldo());
 	}
 
-	@Test
-	void testGetCreditoDisponible() {
-		try {
-
-			tarjeta.retirar(200);
-
-		} catch (Exception e) {
-		}
-		assertEquals(990.0, tarjeta.getCreditoDisponible());
-		assertNotEquals(995.0, tarjeta.getCreditoDisponible());
-	}
 	
 	
 }
